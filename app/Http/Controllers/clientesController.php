@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class clientesController extends Controller
 {
 
+    //Monta o array de arrays dos clientes
     private $clientes = array(
         array('id'=>0, 'nome' => 'Matheus'),
         array('id'=>1, 'nome' => 'Marcelus'),
@@ -16,6 +17,7 @@ class clientesController extends Controller
 
     public function __construct()
     {
+        //Verifica a existencia dos arrays dentro da session, caso não tenha os salva
         $clientes = session('clientes');
         if (!isset($clientes)) session(['clientes' => $this->clientes]);
     }
@@ -101,10 +103,11 @@ class clientesController extends Controller
     }
 
 
-    private function getIndex($id, $clientes)
+    // Retorna o index a ser excluido ou editadoa partir do id
+    private function getIndex($value, $array)
     {
-        $ids = array_column($clientes, 'id');
-        $index = array_search($id, $ids);
+        $retunr = array_column($array, 'id');
+        $index = array_search($value, $retunr);
         return $index;
     }
 }
