@@ -41,6 +41,7 @@ class clientesController extends Controller
     public function create()
     {
         //
+        return view('clientes.create');
     }
 
     /**
@@ -52,6 +53,13 @@ class clientesController extends Controller
     public function store(Request $request)
     {
         //
+        $nome = $request->client_name;
+        $clientes = session('clientes');
+        $id = end($clientes)['id'] + 1;
+        $dados = array('id'=>$id,'nome'=>$nome);
+        array_push($clientes,$dados);
+        session(['clientes' => $clientes]);
+        return view('clientes.index', compact(['clientes']));
     }
 
     /**
