@@ -17,20 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/teste/{id}/', function ($id) {
-    echo $id;
-    echo "<br>";
-
-});
-
-
-Route::get('produtos/{n1}/{n2}','MeuControlador@produtos')
-    ->where('n1','[0-9]+')
-        ->where('n2','[A-Za-z]+')
-            ->name('testinho');
-
-
-
 Route::resource('clientes', 'clientesController');
 
