@@ -119,6 +119,11 @@ class clientesController extends Controller
     public function destroy($id)
     {
         //
+        $clientes =  session('clientes');
+        $index = $this->getIndex($id, $clientes);
+        array_splice($clientes,$index,1);
+        session(['clientes' => $clientes]);
+        return redirect()->route('clientes.index');
     }
 
 
